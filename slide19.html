@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Testing Levels: A Deep Dive on Unit Testing - Summary</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header-accent {
+            height: 4px;
+            background: linear-gradient(to right, #0078D4, #00BCF2);
+            width: 100%;
+        }
+        .content {
+            padding: 60px;
+            padding-top: 40px;
+            height: calc(100% - 4px - 60px);
+        }
+        .title {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #0078D4;
+            margin-bottom: 1.5rem;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .page-number {
+            font-weight: 600;
+        }
+        .summary-section {
+            margin-bottom: 20px;
+        }
+        .summary-heading {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #0078D4;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        .summary-heading i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        .key-point {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        .key-icon {
+            width: 24px;
+            height: 24px;
+            background-color: #E5F1FB;
+            color: #0078D4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            margin-right: 12px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .key-text {
+            flex: 1;
+        }
+        .testing-level-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .level-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .level-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+        }
+        .level-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+        .unit-bg {
+            background-color: #E5F1FB;
+            color: #0078D4;
+        }
+        .integration-bg {
+            background-color: #E8F5E9;
+            color: #2E7D32;
+        }
+        .system-bg {
+            background-color: #FFF3E0;
+            color: #E65100;
+        }
+        .acceptance-bg {
+            background-color: #F3E5F5;
+            color: #7B1FA2;
+        }
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .principle-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px;
+            background-color: #f8fafc;
+        }
+        .principle-title {
+            font-weight: 600;
+            color: #0078D4;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .principle-title i {
+            margin-right: 8px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-accent"></div>
+        <div class="content">
+            <h1 class="title">Summary & Key Takeaways</h1>
+            
+            <div class="summary-section">
+                <h2 class="summary-heading">
+                    <i class="fas fa-layer-group"></i>
+                    Testing Levels Recap
+                </h2>
+                <div class="testing-level-grid">
+                    <div class="level-card">
+                        <div class="level-icon unit-bg">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <h3 class="text-base font-medium text-gray-800">Unit Testing</h3>
+                        <p class="text-sm text-gray-600">Tests individual components in isolation with fast feedback loops. The foundation of the test pyramid.</p>
+                    </div>
+                    <div class="level-card">
+                        <div class="level-icon integration-bg">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <h3 class="text-base font-medium text-gray-800">Integration Testing</h3>
+                        <p class="text-sm text-gray-600">Verifies that components work well together. Can use narrow or broad testing approaches.</p>
+                    </div>
+                    <div class="level-card">
+                        <div class="level-icon system-bg">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3 class="text-base font-medium text-gray-800">System Testing</h3>
+                        <p class="text-sm text-gray-600">Validates the complete application against specified requirements through end-to-end scenarios.</p>
+                    </div>
+                    <div class="level-card">
+                        <div class="level-icon acceptance-bg">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <h3 class="text-base font-medium text-gray-800">Acceptance Testing</h3>
+                        <p class="text-sm text-gray-600">Confirms the system meets business requirements, often using BDD approaches like Cucumber.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="summary-section">
+                <h2 class="summary-heading">
+                    <i class="fas fa-bullseye"></i>
+                    Unit Testing Best Practices
+                </h2>
+                <div class="principles-grid">
+                    <div class="principle-card">
+                        <div class="principle-title">
+                            <i class="fas fa-bullseye"></i> Test One Thing Per Test
+                        </div>
+                        <p class="text-sm text-gray-600">Each test should verify a single behavior for better maintainability and clearer failures.</p>
+                    </div>
+                    <div class="principle-card">
+                        <div class="principle-title">
+                            <i class="fas fa-ghost"></i> Mock Sparingly
+                        </div>
+                        <p class="text-sm text-gray-600">Mock only external dependencies, not internal implementation details.</p>
+                    </div>
+                    <div class="principle-card">
+                        <div class="principle-title">
+                            <i class="fas fa-file-signature"></i> Descriptive Names
+                        </div>
+                        <p class="text-sm text-gray-600">Name tests clearly to express what's being tested and under what conditions.</p>
+                    </div>
+                    <div class="principle-card">
+                        <div class="principle-title">
+                            <i class="fas fa-bolt"></i> Keep Tests Fast
+                        </div>
+                        <p class="text-sm text-gray-600">Unit tests should execute quickly (< 50ms) for optimal developer feedback.</p>
+                    </div>
+                    <div class="principle-card">
+                        <div class="principle-title">
+                            <i class="fas fa-tasks"></i> Use AAA Pattern
+                        </div>
+                        <p class="text-sm text-gray-600">Structure tests with Arrange, Act, Assert to improve readability and organization.</p>
+                    </div>
+                    <div class="principle-card">
+                        <div class="principle-title">
+                            <i class="fas fa-exchange-alt"></i> Test Behavior
+                        </div>
+                        <p class="text-sm text-gray-600">Test the what, not the how, to allow for implementation changes.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="summary-section">
+                <h2 class="summary-heading">
+                    <i class="fas fa-star"></i>
+                    Key Principles to Remember
+                </h2>
+                <div class="key-point">
+                    <div class="key-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="key-text">
+                        <p class="text-gray-800 font-medium">Follow the Test Pyramid</p>
+                        <p class="text-sm text-gray-600">Invest more in unit tests (many), followed by integration tests (some), and fewer system/UI tests (few) for optimal speed and reliability.</p>
+                    </div>
+                </div>
+                <div class="key-point">
+                    <div class="key-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="key-text">
+                        <p class="text-gray-800 font-medium">Integrate Testing into CI/CD</p>
+                        <p class="text-sm text-gray-600">Automate tests at each pipeline stage, starting with faster tests and progressing to more comprehensive ones.</p>
+                    </div>
+                </div>
+                <div class="key-point">
+                    <div class="key-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="key-text">
+                        <p class="text-gray-800 font-medium">Balance Test Coverage and Pragmatism</p>
+                        <p class="text-sm text-gray-600">Focus on testing critical paths and business logic rather than pursuing 100% coverage at all costs.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400 mt-5">
+                <div class="flex">
+                    <div class="flex-shrink-0 text-blue-500 mr-3">
+                        <i class="fas fa-quote-left text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-gray-800 italic">"Tests are the documentation of your system that never goes out of date."</p>
+                        <p class="text-sm text-gray-600 mt-1">Write tests that not only catch bugs but also serve as living documentation of how your code should behave.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div>Software Testing Series</div>
+            <div class="page-number">19 / 20</div>
+        </div>
+    </div>
+</body>
+</html>

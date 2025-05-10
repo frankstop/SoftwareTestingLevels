@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Testing Levels: A Deep Dive on Unit Testing - System Testing</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header-accent {
+            height: 4px;
+            background: linear-gradient(to right, #0078D4, #00BCF2);
+            width: 100%;
+        }
+        .content {
+            padding: 60px;
+            padding-top: 40px;
+            height: calc(100% - 4px - 60px);
+        }
+        .title {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #0078D4;
+            margin-bottom: 1.5rem;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .page-number {
+            font-weight: 600;
+        }
+        .definition-box {
+            background-color: #E5F1FB;
+            border-left: 5px solid #0078D4;
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .technique-card {
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            padding: 16px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+            background-color: white;
+            height: 100%;
+        }
+        .technique-card:hover {
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+        }
+        .technique-icon {
+            color: #0078D4;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        .technique-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0078D4;
+            margin-bottom: 8px;
+        }
+        .process-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #0078D4;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            margin-right: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-accent"></div>
+        <div class="content">
+            <h1 class="title">System Testing</h1>
+            
+            <div class="definition-box">
+                <p class="text-xl font-semibold text-gray-800">System Testing is the process of validating the complete and integrated system to verify it meets specified requirements and fulfills its intended purpose in the target environment.</p>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-5 mb-4">
+                <div class="technique-card">
+                    <div class="technique-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <div class="technique-title">Performance Testing</div>
+                    <p class="text-gray-700">Evaluates the system's responsiveness, stability, and resource usage under various load conditions.</p>
+                    <div class="mt-2 flex flex-wrap gap-2">
+                        <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Load Testing</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Stress Testing</span>
+                        <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Scalability Testing</span>
+                    </div>
+                </div>
+                
+                <div class="technique-card">
+                    <div class="technique-icon"><i class="fas fa-users"></i></div>
+                    <div class="technique-title">Usability Testing</div>
+                    <p class="text-gray-700">Evaluates how user-friendly and intuitive the system is from an end-user perspective.</p>
+                    <div class="mt-2 flex flex-wrap gap-2">
+                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Navigation Testing</span>
+                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">User Flow Testing</span>
+                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Accessibility</span>
+                    </div>
+                </div>
+                
+                <div class="technique-card">
+                    <div class="technique-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="technique-title">Security Testing</div>
+                    <p class="text-gray-700">Identifies vulnerabilities in the system and ensures data protection and privacy.</p>
+                    <div class="mt-2 flex flex-wrap gap-2">
+                        <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded">Penetration Testing</span>
+                        <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded">Vulnerability Scanning</span>
+                        <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded">Authentication Testing</span>
+                    </div>
+                </div>
+                
+                <div class="technique-card">
+                    <div class="technique-icon"><i class="fas fa-sync-alt"></i></div>
+                    <div class="technique-title">Recovery Testing</div>
+                    <p class="text-gray-700">Tests how well the system can recover from crashes, hardware failures, or other catastrophic problems.</p>
+                    <div class="mt-2 flex flex-wrap gap-2">
+                        <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded">Failover Testing</span>
+                        <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded">Backup Restoration</span>
+                    </div>
+                </div>
+                
+                <div class="technique-card">
+                    <div class="technique-icon"><i class="fas fa-inbox"></i></div>
+                    <div class="technique-title">Functional Testing</div>
+                    <p class="text-gray-700">Validates that the system behaves according to specified functional requirements.</p>
+                    <div class="mt-2 flex flex-wrap gap-2">
+                        <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded">Black Box Testing</span>
+                        <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded">Regression Testing</span>
+                        <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded">Smoke Testing</span>
+                    </div>
+                </div>
+                
+                <div class="technique-card">
+                    <div class="technique-icon"><i class="fas fa-server"></i></div>
+                    <div class="technique-title">Compatibility Testing</div>
+                    <p class="text-gray-700">Ensures the application works correctly across different environments, browsers, and devices.</p>
+                    <div class="mt-2 flex flex-wrap gap-2">
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">Cross-Browser</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">Cross-Platform</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">Database Compatibility</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gray-50 rounded-lg p-4 mt-2">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">System Testing Process</h3>
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h4 class="font-medium text-gray-800">Test Planning</h4>
+                            <p class="text-gray-600 text-sm">Define scope, approach, resources, and schedule</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h4 class="font-medium text-gray-800">Test Case Development</h4>
+                            <p class="text-gray-600 text-sm">Create comprehensive test scenarios and cases</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h4 class="font-medium text-gray-800">Test Environment Setup</h4>
+                            <p class="text-gray-600 text-sm">Prepare hardware, software, and network configuration</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div>
+                            <h4 class="font-medium text-gray-800">Test Execution</h4>
+                            <p class="text-gray-600 text-sm">Run tests and document results</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <div>
+                            <h4 class="font-medium text-gray-800">Defect Tracking</h4>
+                            <p class="text-gray-600 text-sm">Report and manage discovered issues</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">6</div>
+                        <div>
+                            <h4 class="font-medium text-gray-800">Test Closure</h4>
+                            <p class="text-gray-600 text-sm">Analyze results and prepare final reports</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div>Software Testing Series</div>
+            <div class="page-number">11 / 20</div>
+        </div>
+    </div>
+</body>
+</html>

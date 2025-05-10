@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Testing Levels: A Deep Dive on Unit Testing - pytest Examples</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header-accent {
+            height: 4px;
+            background: linear-gradient(to right, #0078D4, #00BCF2);
+            width: 100%;
+        }
+        .content {
+            padding: 60px;
+            padding-top: 40px;
+            height: calc(100% - 4px - 60px);
+        }
+        .title {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #0078D4;
+            margin-bottom: 1.5rem;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .page-number {
+            font-weight: 600;
+        }
+        .code-container {
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            border: 1px solid #e2e8f0;
+        }
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .code-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+        }
+        .code-tag {
+            background-color: #0078D4;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        .code-block {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            overflow-x: auto;
+            white-space: pre;
+            color: #333;
+        }
+        .code-comment {
+            color: #6b7280;
+        }
+        .tab-container {
+            display: flex;
+            margin-bottom: 16px;
+        }
+        .tab {
+            padding: 8px 16px;
+            border: 1px solid #e2e8f0;
+            border-bottom: none;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-right: 4px;
+        }
+        .tab.active {
+            background-color: #E5F1FB;
+            border-color: #0078D4;
+            color: #0078D4;
+        }
+        .output-box {
+            background-color: #f1f5f9;
+            border-left: 4px solid #10b981;
+            padding: 12px;
+            margin-top: 8px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-accent"></div>
+        <div class="content">
+            <h1 class="title">pytest Examples</h1>
+            
+            <div class="tab-container">
+                <div class="tab active">Basic Test</div>
+                <div class="tab">Parametrized Test</div>
+                <div class="tab">Fixtures</div>
+                <div class="tab">Mocking</div>
+            </div>
+            
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-title">Basic Test Structure</div>
+                    <div class="code-tag">src/math_ops.py and tests/test_math_ops.py</div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <div class="text-sm font-medium text-gray-700 mb-1">Source Code:</div>
+                        <div class="code-block bg-gray-100 p-3 rounded">
+# src/math_ops.py
+def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+</div>
+                    </div>
+                    <div>
+                        <div class="text-sm font-medium text-gray-700 mb-1">Test Code:</div>
+                        <div class="code-block bg-gray-100 p-3 rounded">
+# tests/test_math_ops.py
+from src.math_ops import add, subtract
+
+def test_add():
+    # Basic test verifying add function
+    result = add(3, 5)
+    assert result == 8
+    
+def test_subtract():
+    result = subtract(10, 4)
+    assert result == 6
+</div>
+                    </div>
+                </div>
+                <div class="mt-3 text-sm text-gray-600">
+                    <i class="fas fa-info-circle text-blue-500 mr-1"></i>
+                    Basic tests simply import functions, call them with specific inputs, and assert the expected outputs.
+                </div>
+            </div>
+            
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-title">Parametrized Tests</div>
+                    <div class="code-tag">Multiple Test Cases</div>
+                </div>
+                <div class="code-block bg-gray-100 p-3 rounded">
+import pytest
+from src.math_ops import add
+
+@pytest.mark.parametrize("a, b, expected", [
+    (1, 2, 3),     # Positive numbers
+    (-1, 5, 4),    # Negative and positive
+    (0, 0, 0),     # Zeros
+    (-5, -7, -12)  # Both negative
+])
+def test_add_parametrized(a, b, expected):
+    # Test multiple input combinations in one function
+    assert add(a, b) == expected
+</div>
+                <div class="mt-3 text-sm text-gray-600">
+                    <i class="fas fa-lightbulb text-yellow-500 mr-1"></i>
+                    <strong>@pytest.mark.parametrize</strong> runs the test function once for each set of parameters, creating separate test cases.
+                </div>
+            </div>
+            
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-title">Using Fixtures for Setup</div>
+                    <div class="code-tag">Reusable Test Components</div>
+                </div>
+                <div class="code-block bg-gray-100 p-3 rounded">
+import pytest
+
+# Define a fixture to provide test data
+@pytest.fixture
+def sample_data():
+    return {"user_id": 123, "name": "Test User", "is_active": True}
+
+# Test uses the fixture by naming it as a parameter
+def test_user_is_active(sample_data):
+    assert sample_data["is_active"] is True
+    
+def test_user_name(sample_data):
+    assert sample_data["name"] == "Test User"
+</div>
+                <div class="mt-3 text-sm text-gray-600">
+                    <i class="fas fa-cog text-gray-500 mr-1"></i>
+                    Fixtures set up test preconditions, can handle teardown, and can be scoped to function, class, module, or session.
+                </div>
+            </div>
+            
+            <div class="code-container mb-0">
+                <div class="code-header">
+                    <div class="code-title">Mocking with monkeypatch</div>
+                    <div class="code-tag">Testing External Dependencies</div>
+                </div>
+                <div class="code-block bg-gray-100 p-3 rounded">
+# Function that calls an external API
+def get_user_data(user_id):
+    # This would normally call an API
+    response = requests.get(f"https://api.example.com/users/{user_id}")
+    return response.json()
+
+# Test with mocking
+def test_get_user_data(monkeypatch):
+    # Define mock response
+    class MockResponse:
+        @staticmethod
+        def json():
+            return {"id": 123, "name": "Mock User"}
+            
+    # Replace requests.get with our mock function
+    def mock_get(*args, **kwargs):
+        return MockResponse()
+        
+    # Apply the monkeypatch
+    monkeypatch.setattr("requests.get", mock_get)
+    
+    # Test with the mock
+    result = get_user_data(123)
+    assert result["name"] == "Mock User"
+</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div>Software Testing Series</div>
+            <div class="page-number">7 / 20</div>
+        </div>
+    </div>
+</body>
+</html>

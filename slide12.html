@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Testing Levels: A Deep Dive on Unit Testing - System Testing Examples</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header-accent {
+            height: 4px;
+            background: linear-gradient(to right, #0078D4, #00BCF2);
+            width: 100%;
+        }
+        .content {
+            padding: 60px;
+            padding-top: 40px;
+            height: calc(100% - 4px - 60px);
+        }
+        .title {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #0078D4;
+            margin-bottom: 1.5rem;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .page-number {
+            font-weight: 600;
+        }
+        .example-card {
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            padding: 16px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+        .example-card:hover {
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+        }
+        .tool-section {
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 16px;
+        }
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .tool-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            border-radius: 6px;
+            background-color: white;
+            border: 1px solid #e2e8f0;
+        }
+        .tool-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        .scenario-box {
+            padding: 12px;
+            border-left: 3px solid #0078D4;
+            background-color: #E5F1FB;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-accent"></div>
+        <div class="content">
+            <h1 class="title">System Testing in Practice</h1>
+            
+            <div class="grid grid-cols-2 gap-6">
+                <div class="example-card">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-3">
+                        <i class="fas fa-tachometer-alt text-blue-500 mr-2"></i>
+                        Performance Testing Example
+                    </h2>
+                    <div class="scenario-box mb-3">
+                        <p class="text-gray-700"><strong>Scenario:</strong> Testing an e-commerce website's responsiveness during peak shopping season</p>
+                    </div>
+                    <ul class="text-gray-700 space-y-2">
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i> <strong>Load Test:</strong> Simulate 10,000 concurrent users browsing products</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i> <strong>Stress Test:</strong> Gradually increase users until performance degrades</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i> <strong>Endurance Test:</strong> Maintain moderate load for 24 hours to detect memory leaks</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i> <strong>Spike Test:</strong> Suddenly add 5,000 users during checkout process</li>
+                    </ul>
+                    <p class="text-gray-600 text-sm mt-3">Common metrics: Response time, throughput, error rate, CPU/memory utilization</p>
+                </div>
+                
+                <div class="example-card">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-3">
+                        <i class="fas fa-shield-alt text-red-500 mr-2"></i>
+                        Security Testing Example
+                    </h2>
+                    <div class="scenario-box mb-3">
+                        <p class="text-gray-700"><strong>Scenario:</strong> Testing a financial application's security controls</p>
+                    </div>
+                    <ul class="text-gray-700 space-y-2">
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i> <strong>Vulnerability Scan:</strong> Identify security flaws in application code and infrastructure</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i> <strong>Penetration Testing:</strong> Attempt to exploit discovered vulnerabilities</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i> <strong>Authentication Testing:</strong> Test password policies, multi-factor authentication</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i> <strong>Session Management:</strong> Test session timeout, cookie security</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i> <strong>Data Protection:</strong> Verify encryption of sensitive data</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="example-card mt-4">
+                <h2 class="text-xl font-semibold text-gray-800 mb-2">
+                    <i class="fas fa-sync-alt text-purple-500 mr-2"></i>
+                    End-to-End System Test Flow
+                </h2>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <div class="flex items-center justify-between">
+                        <div class="text-center">
+                            <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-user-check text-blue-600 text-xl"></i>
+                            </div>
+                            <p class="text-sm font-medium text-gray-700">User Registration</p>
+                        </div>
+                        <div class="text-blue-500"><i class="fas fa-arrow-right"></i></div>
+                        <div class="text-center">
+                            <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-shopping-cart text-blue-600 text-xl"></i>
+                            </div>
+                            <p class="text-sm font-medium text-gray-700">Product Search</p>
+                        </div>
+                        <div class="text-blue-500"><i class="fas fa-arrow-right"></i></div>
+                        <div class="text-center">
+                            <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-credit-card text-blue-600 text-xl"></i>
+                            </div>
+                            <p class="text-sm font-medium text-gray-700">Payment Processing</p>
+                        </div>
+                        <div class="text-blue-500"><i class="fas fa-arrow-right"></i></div>
+                        <div class="text-center">
+                            <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-truck text-blue-600 text-xl"></i>
+                            </div>
+                            <p class="text-sm font-medium text-gray-700">Order Fulfillment</p>
+                        </div>
+                        <div class="text-blue-500"><i class="fas fa-arrow-right"></i></div>
+                        <div class="text-center">
+                            <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-envelope text-blue-600 text-xl"></i>
+                            </div>
+                            <p class="text-sm font-medium text-gray-700">Email Notifications</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-600 text-sm mt-2">End-to-end tests verify complete business flows from the user's perspective, testing all integrated components.</p>
+            </div>
+            
+            <div class="tool-section">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">Popular System Testing Tools</h3>
+                <div class="tool-grid">
+                    <div class="tool-item">
+                        <div class="tool-icon bg-red-100 text-red-600">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-800">JMeter</p>
+                            <p class="text-gray-500 text-xs">Performance Testing</p>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon bg-green-100 text-green-600">
+                            <i class="fas fa-vial"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-800">Selenium</p>
+                            <p class="text-gray-500 text-xs">Functional Testing</p>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon bg-blue-100 text-blue-600">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-800">OWASP ZAP</p>
+                            <p class="text-gray-500 text-xs">Security Testing</p>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon bg-purple-100 text-purple-600">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-800">BrowserStack</p>
+                            <p class="text-gray-500 text-xs">Compatibility Testing</p>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon bg-yellow-100 text-yellow-600">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-800">Appium</p>
+                            <p class="text-gray-500 text-xs">Mobile App Testing</p>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon bg-indigo-100 text-indigo-600">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-800">Gatling</p>
+                            <p class="text-gray-500 text-xs">Load Testing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div>Software Testing Series</div>
+            <div class="page-number">12 / 20</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Testing Levels: A Deep Dive on Unit Testing - Advanced pytest Techniques</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header-accent {
+            height: 4px;
+            background: linear-gradient(to right, #0078D4, #00BCF2);
+            width: 100%;
+        }
+        .content {
+            padding: 60px;
+            padding-top: 40px;
+            height: calc(100% - 4px - 60px);
+        }
+        .title {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #0078D4;
+            margin-bottom: 1.5rem;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .page-number {
+            font-weight: 600;
+        }
+        .code-container {
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            border: 1px solid #e2e8f0;
+        }
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .code-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+        }
+        .code-tag {
+            background-color: #0078D4;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        .code-block {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            overflow-x: auto;
+            white-space: pre;
+            color: #333;
+        }
+        .technique-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+        .technique-card:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+        .technique-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0078D4;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .technique-icon {
+            margin-right: 10px;
+            font-size: 1.4rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-accent"></div>
+        <div class="content">
+            <h1 class="title">Advanced pytest Techniques</h1>
+            
+            <div class="grid grid-cols-2 gap-6 mb-4">
+                <div class="technique-card">
+                    <div class="technique-title">
+                        <i class="fas fa-tools technique-icon"></i>
+                        Monkey Patching with monkeypatch
+                    </div>
+                    <p class="text-gray-700 mb-3">Safely modify functions, objects, or environment variables during tests.</p>
+                    <div class="code-block bg-gray-100 p-3 rounded text-sm">
+# Example: Patching environment variables
+def test_app_environment(monkeypatch):
+    monkeypatch.setenv("API_KEY", "test_key")
+    monkeypatch.setenv("DEBUG", "True")
+    
+    # Now code using os.environ will see these values
+    assert os.environ["API_KEY"] == "test_key"
+    
+# Example: Patching functions
+def test_file_operations(monkeypatch):
+    # Mock the file reading function
+    def mock_read_file(filename):
+        return "mocked content"
+        
+    monkeypatch.setattr("myapp.utils.read_file", 
+                      mock_read_file)
+                      
+    # Now myapp.utils.read_file will return "mocked content"</div>
+                </div>
+                
+                <div class="technique-card">
+                    <div class="technique-title">
+                        <i class="fas fa-random technique-icon"></i>
+                        Parametrization with Custom IDs
+                    </div>
+                    <p class="text-gray-700 mb-3">Make test failures more readable with custom IDs for test cases.</p>
+                    <div class="code-block bg-gray-100 p-3 rounded text-sm">
+@pytest.mark.parametrize(
+    "email, is_valid",
+    [
+        pytest.param("test@example.com", True, 
+                   id="valid-standard-email"),
+        pytest.param("user.name+tag@domain.com", True, 
+                   id="valid-with-special-chars"),
+        pytest.param("invalid@", False, 
+                   id="missing-domain"),
+        pytest.param("no-at-sign.com", False, 
+                   id="missing-at-symbol")
+    ]
+)
+def test_email_validation(email, is_valid):
+    result = validate_email(email)
+    assert result == is_valid</div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-6">
+                <div class="technique-card">
+                    <div class="technique-title">
+                        <i class="fas fa-exchange-alt technique-icon"></i>
+                        Fixture Factory Pattern
+                    </div>
+                    <p class="text-gray-700 mb-3">Create dynamic fixtures that can be customized per test.</p>
+                    <div class="code-block bg-gray-100 p-3 rounded text-sm">
+@pytest.fixture
+def create_user():
+    """A fixture factory for creating user objects."""
+    def _create_user(name="Default User", 
+                  age=30, 
+                  roles=None):
+        return {
+            "name": name,
+            "age": age,
+            "roles": roles or ["user"],
+            "created_at": datetime.now()
+        }
+    return _create_user
+
+def test_admin_user(create_user):
+    # Use the fixture factory to create a specific user
+    admin = create_user(name="Admin User", 
+                      roles=["admin", "user"])
+    assert "admin" in admin["roles"]</div>
+                </div>
+                
+                <div class="technique-card">
+                    <div class="technique-title">
+                        <i class="fas fa-flask technique-icon"></i>
+                        Using pytest-mock for Streamlined Mocking
+                    </div>
+                    <p class="text-gray-700 mb-3">A thin-wrapper around the unittest.mock library for easier mocking.</p>
+                    <div class="code-block bg-gray-100 p-3 rounded text-sm">
+# Test with pytest-mock fixture
+def test_user_service(mocker):
+    # Mock the database call
+    mock_db = mocker.patch(
+        "app.services.user_service.database"
+    )
+    # Configure the mock's return value
+    mock_db.query.return_value.filter_by.return_value\
+        .first.return_value = {
+            "id": 1, 
+            "name": "Test User"
+        }
+    
+    # Call the service function that uses the database
+    from app.services.user_service import get_user
+    user = get_user(1)
+    
+    # Assert the result and that the mock was called correctly
+    assert user["name"] == "Test User"
+    mock_db.query.assert_called_once()</div>
+                </div>
+            </div>
+            
+            <div class="mt-5 p-4 bg-blue-50 border-l-4 border-blue-400 text-blue-800 rounded">
+                <div class="flex">
+                    <div class="mr-3">
+                        <i class="fas fa-lightbulb text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold mb-1">Pro Tip: Test Environment Independence</h3>
+                        <p class="text-sm">The goal of mocking and patching is to make tests environment-independent and deterministic. Only mock what's necessary to achieve this, not your entire application.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div>Software Testing Series</div>
+            <div class="page-number">8 / 20</div>
+        </div>
+    </div>
+</body>
+</html>

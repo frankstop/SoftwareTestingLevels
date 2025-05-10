@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Testing Levels: A Deep Dive on Unit Testing - Test Pyramid</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header-accent {
+            height: 4px;
+            background: linear-gradient(to right, #0078D4, #00BCF2);
+            width: 100%;
+        }
+        .content {
+            padding: 60px;
+            padding-top: 40px;
+            height: calc(100% - 4px - 60px);
+        }
+        .title {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #0078D4;
+            margin-bottom: 1.5rem;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .page-number {
+            font-weight: 600;
+        }
+        .pyramid-container {
+            height: 340px;
+            position: relative;
+            margin: 30px auto;
+            width: 80%;
+        }
+        .info-card {
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            padding: 16px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+        .info-card:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transform: translateY(-3px);
+        }
+        .info-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .info-icon {
+            width: 32px;
+            height: 32px;
+            background-color: rgba(0, 120, 212, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+        }
+        .info-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0078D4;
+        }
+        .quote-box {
+            background-color: #f8fafc;
+            border-left: 4px solid #0078D4;
+            padding: 16px;
+            margin-top: 24px;
+            border-radius: 0 8px 8px 0;
+        }
+        .layer-label {
+            position: absolute;
+            right: 0;
+            padding: 8px 16px;
+            border-radius: 4px 0 0 4px;
+            color: white;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        .label-unit {
+            background-color: #0078D4;
+            bottom: 50px;
+        }
+        .label-integration {
+            background-color: #2E7D32;
+            bottom: 185px;
+        }
+        .label-system {
+            background-color: #E65100;
+            bottom: 310px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-accent"></div>
+        <div class="content">
+            <h1 class="title">The Test Pyramid Strategy</h1>
+            
+            <div class="pyramid-container">
+                <canvas id="pyramidChart"></canvas>
+                
+                <div class="layer-label label-unit">
+                    <i class="fas fa-cube mr-2"></i> Unit Tests
+                </div>
+                <div class="layer-label label-integration">
+                    <i class="fas fa-link mr-2"></i> Integration Tests
+                </div>
+                <div class="layer-label label-system">
+                    <i class="fas fa-laptop-code mr-2"></i> System/UI Tests
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-6">
+                <div class="info-card bg-blue-50">
+                    <div class="info-header">
+                        <div class="info-icon bg-blue-100">
+                            <i class="fas fa-cube text-blue-600"></i>
+                        </div>
+                        <div class="info-title">Many Unit Tests</div>
+                    </div>
+                    <ul class="text-gray-700 text-sm space-y-2">
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Fast execution (milliseconds)</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Low cost to write and maintain</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Focused on small units of code</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Quick developer feedback</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card bg-green-50">
+                    <div class="info-header">
+                        <div class="info-icon bg-green-100">
+                            <i class="fas fa-link text-green-600"></i>
+                        </div>
+                        <div class="info-title">Fewer Integration Tests</div>
+                    </div>
+                    <ul class="text-gray-700 text-sm space-y-2">
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Moderate speed (seconds)</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Test component interactions</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>More complex setup</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Verify interface contracts</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card bg-orange-50">
+                    <div class="info-header">
+                        <div class="info-icon bg-orange-100">
+                            <i class="fas fa-laptop-code text-orange-600"></i>
+                        </div>
+                        <div class="info-title">Minimal UI/E2E Tests</div>
+                    </div>
+                    <ul class="text-gray-700 text-sm space-y-2">
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Slow execution (minutes)</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Expensive to maintain</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Validate full system behavior</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Prone to flakiness</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="quote-box">
+                <div class="flex">
+                    <div class="flex-shrink-0 mr-4">
+                        <i class="fas fa-quote-left text-blue-500 text-2xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-gray-700 italic">"The Test Pyramid is a metaphor that tells us to group software tests into buckets of different granularity. It also gives an idea of how many tests we should have in each of these groups."</p>
+                        <p class="text-gray-600 mt-2 text-sm">— Martin Fowler, The Practical Test Pyramid</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-4 flex justify-between items-center">
+                <div class="bg-blue-50 rounded-lg p-3 border border-blue-100 max-w-md">
+                    <h3 class="text-blue-700 font-semibold flex items-center">
+                        <i class="fas fa-lightbulb mr-2"></i> Why the Pyramid Shape?
+                    </h3>
+                    <p class="text-gray-700 text-sm">The shape represents the ideal number of tests at each level and their relative costs. Investing in more tests at the bottom creates a stable foundation, while minimizing slower, more brittle tests at the top.</p>
+                </div>
+                
+                <div class="flex items-center max-w-md">
+                    <div class="w-24 flex flex-col items-center justify-center">
+                        <i class="fas fa-arrow-up text-red-500 text-xl"></i>
+                        <p class="text-gray-600 text-xs text-center font-medium mt-1">Increasing<br>Cost/Time</p>
+                    </div>
+                    <div class="w-24 flex flex-col items-center justify-center">
+                        <i class="fas fa-arrow-down text-green-500 text-xl"></i>
+                        <p class="text-gray-600 text-xs text-center font-medium mt-1">Increasing<br>Isolation</p>
+                    </div>
+                    <div class="w-24 flex flex-col items-center justify-center">
+                        <i class="fas fa-arrow-down text-blue-500 text-xl"></i>
+                        <p class="text-gray-600 text-xs text-center font-medium mt-1">Increasing<br>Speed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div>Software Testing Series</div>
+            <div class="page-number">16 / 20</div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('pyramidChart').getContext('2d');
+            
+            const pyramidChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Test Distribution'],
+                    datasets: [
+                        {
+                            label: 'UI/E2E Tests',
+                            data: [15],
+                            backgroundColor: '#E65100',
+                            barPercentage: 0.4,
+                        },
+                        {
+                            label: 'Integration Tests',
+                            data: [35],
+                            backgroundColor: '#2E7D32',
+                            barPercentage: 0.7,
+                        },
+                        {
+                            label: 'Unit Tests',
+                            data: [70],
+                            backgroundColor: '#0078D4',
+                            barPercentage: 1,
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            stacked: true,
+                            display: false,
+                            grid: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            stacked: true,
+                            display: false,
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            enabled: false
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

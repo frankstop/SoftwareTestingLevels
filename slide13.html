@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Testing Levels: A Deep Dive on Unit Testing - Acceptance Testing</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header-accent {
+            height: 4px;
+            background: linear-gradient(to right, #0078D4, #00BCF2);
+            width: 100%;
+        }
+        .content {
+            padding: 60px;
+            padding-top: 40px;
+            height: calc(100% - 4px - 60px);
+        }
+        .title {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #0078D4;
+            margin-bottom: 1.5rem;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .page-number {
+            font-weight: 600;
+        }
+        .definition-box {
+            background-color: #E5F1FB;
+            border-left: 5px solid #0078D4;
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .type-card {
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            padding: 16px;
+            transition: all 0.3s ease;
+            height: 100%;
+            background-color: white;
+        }
+        .type-card:hover {
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+        }
+        .type-icon {
+            color: #0078D4;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        .type-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0078D4;
+            margin-bottom: 8px;
+        }
+        .bdd-box {
+            background-color: #f8f8f8;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .bdd-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .step-keyword {
+            background-color: #0078D4;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-right: 10px;
+            width: 80px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-accent"></div>
+        <div class="content">
+            <h1 class="title">Acceptance Testing</h1>
+            
+            <div class="definition-box">
+                <p class="text-xl font-semibold text-gray-800">Acceptance Testing validates that the software system meets business requirements and is acceptable for delivery, confirming that the end product fulfills the intended use from the user's perspective.</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-6 mb-5">
+                <div class="type-card">
+                    <div class="type-icon"><i class="fas fa-users"></i></div>
+                    <div class="type-title">User Acceptance Testing (UAT)</div>
+                    <p class="text-gray-700">Testing performed by actual end-users or clients to verify the system meets their requirements before accepting delivery.</p>
+                    <ul class="text-gray-600 text-sm mt-3 space-y-1">
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Real-world scenarios and workflows</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Conducted in production-like environment</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Final validation before sign-off</li>
+                    </ul>
+                </div>
+                
+                <div class="type-card">
+                    <div class="type-icon"><i class="fas fa-file-contract"></i></div>
+                    <div class="type-title">Regulatory/Compliance Testing</div>
+                    <p class="text-gray-700">Ensures that the software complies with regulations, standards, and legal requirements applicable to the industry.</p>
+                    <ul class="text-gray-600 text-sm mt-3 space-y-1">
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>GDPR, HIPAA, SOX compliance</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Industry-specific requirements</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Security and accessibility standards</li>
+                    </ul>
+                </div>
+                
+                <div class="type-card">
+                    <div class="type-icon"><i class="fas fa-flask"></i></div>
+                    <div class="type-title">Alpha/Beta Testing</div>
+                    <p class="text-gray-700">Testing conducted with limited users in real or simulated environments before final release.</p>
+                    <ul class="text-gray-600 text-sm mt-3 space-y-1">
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Alpha: Internal testing with simulated usage</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Beta: External testing with real users</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Provides feedback on usability and features</li>
+                    </ul>
+                </div>
+                
+                <div class="type-card">
+                    <div class="type-icon"><i class="fas fa-clipboard-list"></i></div>
+                    <div class="type-title">Operational Acceptance Testing</div>
+                    <p class="text-gray-700">Verifies that operational aspects of the system are ready for production deployment.</p>
+                    <ul class="text-gray-600 text-sm mt-3 space-y-1">
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Backup and recovery procedures</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Maintenance processes</li>
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>System administration tasks</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="bdd-box">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                    <i class="fas fa-code-branch text-blue-500 mr-2"></i>
+                    Behavior-Driven Development (BDD) Approach
+                </h3>
+                <p class="text-gray-700 mb-4">BDD uses plain language specifications based on the Given-When-Then format to define acceptance criteria:</p>
+                
+                <div class="bg-white p-4 rounded-lg border border-gray-200">
+                    <div class="bdd-step">
+                        <div class="step-keyword">GIVEN</div>
+                        <div class="text-gray-800">A precondition or initial context</div>
+                    </div>
+                    <div class="bdd-step">
+                        <div class="step-keyword">WHEN</div>
+                        <div class="text-gray-800">An event or action occurs</div>
+                    </div>
+                    <div class="bdd-step">
+                        <div class="step-keyword">THEN</div>
+                        <div class="text-gray-800">The expected outcome</div>
+                    </div>
+                    
+                    <div class="mt-4 bg-gray-100 p-3 rounded text-sm font-mono">
+                        <div><span class="text-blue-600">Feature:</span> Shopping Cart Checkout</div>
+                        <div class="pl-4 mt-1"><span class="text-purple-600">Scenario:</span> User completes purchase with valid credit card</div>
+                        <div class="pl-8 mt-1"><span class="text-green-600">Given</span> a user has added items to their shopping cart</div>
+                        <div class="pl-8"><span class="text-green-600">And</span> the user is on the checkout page</div>
+                        <div class="pl-8"><span class="text-green-600">When</span> the user enters valid credit card information</div>
+                        <div class="pl-8"><span class="text-green-600">And</span> clicks the "Complete Purchase" button</div>
+                        <div class="pl-8"><span class="text-green-600">Then</span> the order should be processed successfully</div>
+                        <div class="pl-8"><span class="text-green-600">And</span> the user should receive an order confirmation</div>
+                    </div>
+                </div>
+                
+                <div class="flex mt-4 justify-center gap-8">
+                    <div class="flex items-center">
+                        <i class="fab fa-github text-gray-600 text-xl mr-2"></i>
+                        <span class="font-medium text-gray-800">Cucumber</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-vial text-gray-600 text-xl mr-2"></i>
+                        <span class="font-medium text-gray-800">SpecFlow</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-feather-alt text-gray-600 text-xl mr-2"></i>
+                        <span class="font-medium text-gray-800">JBehave</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-code text-gray-600 text-xl mr-2"></i>
+                        <span class="font-medium text-gray-800">Behat</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div>Software Testing Series</div>
+            <div class="page-number">13 / 20</div>
+        </div>
+    </div>
+</body>

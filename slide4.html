@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Testing Levels: A Deep Dive on Unit Testing - Unit Testing Definition</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header-accent {
+            height: 4px;
+            background: linear-gradient(to right, #0078D4, #00BCF2);
+            width: 100%;
+        }
+        .content {
+            padding: 60px;
+            padding-top: 40px;
+            height: calc(100% - 4px - 60px);
+        }
+        .title {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #0078D4;
+            margin-bottom: 1.5rem;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .page-number {
+            font-weight: 600;
+        }
+        .definition-box {
+            background-color: #E5F1FB;
+            border-left: 5px solid #0078D4;
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+        }
+        .goal-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        .goal-icon {
+            color: #0078D4;
+            font-size: 1.2rem;
+            margin-right: 15px;
+            margin-top: 2px;
+        }
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        .benefit-card {
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #eaeaea;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        .benefit-card:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transform: translateY(-3px);
+        }
+        .benefit-icon {
+            font-size: 2rem;
+            color: #0078D4;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-accent"></div>
+        <div class="content">
+            <h1 class="title">Unit Testing - Definition & Goals</h1>
+            
+            <div class="definition-box">
+                <p class="text-xl font-semibold text-gray-800">Unit Testing is the process of testing individual components or functions of software in isolation from the rest of the application to validate that each unit performs as expected.</p>
+            </div>
+            
+            <h2 class="text-2xl text-gray-800 font-semibold mb-4">Key Goals of Unit Testing</h2>
+            
+            <div class="goal-item">
+                <div class="goal-icon"><i class="fas fa-bug"></i></div>
+                <div>
+                    <p class="text-lg font-medium text-gray-800">Early Bug Detection</p>
+                    <p class="text-gray-600">Identify and fix issues at the earliest stage of development, significantly reducing costs and effort.</p>
+                </div>
+            </div>
+            
+            <div class="goal-item">
+                <div class="goal-icon"><i class="fas fa-code-branch"></i></div>
+                <div>
+                    <p class="text-lg font-medium text-gray-800">Drive Software Design</p>
+                    <p class="text-gray-600">Test-Driven Development (TDD) uses unit tests to guide implementation and ensure modular, testable code.</p>
+                </div>
+            </div>
+            
+            <div class="goal-item">
+                <div class="goal-icon"><i class="fas fa-file-alt"></i></div>
+                <div>
+                    <p class="text-lg font-medium text-gray-800">Living Documentation</p>
+                    <p class="text-gray-600">Tests serve as executable documentation, showing how code is intended to be used.</p>
+                </div>
+            </div>
+            
+            <div class="two-column">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Quick Feedback Loop</h3>
+                    <p class="text-gray-600">Unit tests should run fast (< 50ms each) to provide immediate feedback to developers during development.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Safety Net for Changes</h3>
+                    <p class="text-gray-600">Provides confidence when refactoring code or implementing new features, ensuring existing functionality remains intact.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div>Software Testing Series</div>
+            <div class="page-number">4 / 20</div>
+        </div>
+    </div>
+</body>
+</html>

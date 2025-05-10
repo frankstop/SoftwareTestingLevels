@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Testing Levels: A Deep Dive on Unit Testing - Comparison</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header-accent {
+            height: 4px;
+            background: linear-gradient(to right, #0078D4, #00BCF2);
+            width: 100%;
+        }
+        .content {
+            padding: 60px;
+            padding-top: 40px;
+            height: calc(100% - 4px - 60px);
+        }
+        .title {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #0078D4;
+            margin-bottom: 1.5rem;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .page-number {
+            font-weight: 600;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .comparison-table th {
+            background-color: #0078D4;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-weight: 600;
+        }
+        .comparison-table td {
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            vertical-align: top;
+            position: relative;
+        }
+        .comparison-table tr:nth-child(odd) {
+            background-color: #f8fafc;
+        }
+        .comparison-table tr:hover {
+            background-color: #E5F1FB;
+        }
+        .icon-box {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+        }
+        .unit-color {
+            background-color: #E5F1FB;
+            color: #0078D4;
+        }
+        .integration-color {
+            background-color: #E8F5E9;
+            color: #2E7D32;
+        }
+        .system-color {
+            background-color: #FFF3E0;
+            color: #E65100;
+        }
+        .acceptance-color {
+            background-color: #F3E5F5;
+            color: #7B1FA2;
+        }
+        .highlight-cell {
+            background-color: rgba(0, 120, 212, 0.05);
+            font-weight: 500;
+        }
+        .tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            margin-right: 4px;
+            margin-bottom: 4px;
+            white-space: nowrap;
+        }
+        .tag-unit {
+            background-color: #E5F1FB;
+            color: #0078D4;
+        }
+        .tag-integration {
+            background-color: #E8F5E9;
+            color: #2E7D32;
+        }
+        .tag-system {
+            background-color: #FFF3E0;
+            color: #E65100;
+        }
+        .tag-acceptance {
+            background-color: #F3E5F5;
+            color: #7B1FA2;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-accent"></div>
+        <div class="content">
+            <h1 class="title">Comparing All Testing Levels</h1>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th style="width: 16%">Aspect</th>
+                        <th style="width: 21%">
+                            <div class="icon-box unit-color">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            Unit Testing
+                        </th>
+                        <th style="width: 21%">
+                            <div class="icon-box integration-color">
+                                <i class="fas fa-link"></i>
+                            </div>
+                            Integration Testing
+                        </th>
+                        <th style="width: 21%">
+                            <div class="icon-box system-color">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            System Testing
+                        </th>
+                        <th style="width: 21%">
+                            <div class="icon-box acceptance-color">
+                                <i class="fas fa-clipboard-check"></i>
+                            </div>
+                            Acceptance Testing
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="highlight-cell">Focus</td>
+                        <td>Individual functions, methods, or classes</td>
+                        <td>Interactions between modules or components</td>
+                        <td>Complete application behavior</td>
+                        <td>Business requirements fulfillment</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight-cell">Who Performs</td>
+                        <td>Developers</td>
+                        <td>Developers & Testers</td>
+                        <td>QA Team</td>
+                        <td>End-users, Business Analysts, QA</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight-cell">When Performed</td>
+                        <td>During development, often before code is committed</td>
+                        <td>After unit testing, when modules are ready for integration</td>
+                        <td>After integration testing, when system is fully integrated</td>
+                        <td>Final stage, before release to production</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight-cell">Environment</td>
+                        <td>Development environment</td>
+                        <td>Integration environment</td>
+                        <td>Testing environment (similar to production)</td>
+                        <td>UAT/Staging environment</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight-cell">Typical Tools</td>
+                        <td>
+                            <span class="tag tag-unit">pytest</span>
+                            <span class="tag tag-unit">JUnit</span>
+                            <span class="tag tag-unit">Jest</span>
+                        </td>
+                        <td>
+                            <span class="tag tag-integration">REST-assured</span>
+                            <span class="tag tag-integration">Postman</span>
+                            <span class="tag tag-integration">TestContainers</span>
+                        </td>
+                        <td>
+                            <span class="tag tag-system">Selenium</span>
+                            <span class="tag tag-system">JMeter</span>
+                            <span class="tag tag-system">Gatling</span>
+                        </td>
+                        <td>
+                            <span class="tag tag-acceptance">Cucumber</span>
+                            <span class="tag tag-acceptance">SpecFlow</span>
+                            <span class="tag tag-acceptance">Robot Framework</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="highlight-cell">Test Data</td>
+                        <td>Test data only (often mocked)</td>
+                        <td>Mix of test data and limited real data</td>
+                        <td>Production-like data</td>
+                        <td>Real business data</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight-cell">Test Speed</td>
+                        <td>Very fast (milliseconds)</td>
+                        <td>Fast to moderate</td>
+                        <td>Slow (minutes to hours)</td>
+                        <td>Varies (often manual testing)</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight-cell">Primary Goal</td>
+                        <td>Verify code correctness at function/class level</td>
+                        <td>Verify component interactions and interfaces</td>
+                        <td>Verify system meets technical requirements</td>
+                        <td>Verify system meets business needs</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="mt-5 p-4 bg-gray-50 rounded-lg">
+                <div class="flex items-center">
+                    <div class="mr-4 text-blue-600 text-2xl">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800">Key Insight:</h3>
+                        <p class="text-gray-700">Each testing level builds upon the previous one, increasing in scope while decreasing in isolation. A comprehensive testing strategy includes all levels, with appropriate balance for your project needs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div>Software Testing Series</div>
+            <div class="page-number">15 / 20</div>
+        </div>
+    </div>
+</body>
+</html>

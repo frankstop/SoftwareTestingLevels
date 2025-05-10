@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Testing Levels: A Deep Dive on Unit Testing - CI/CD Integration</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header-accent {
+            height: 4px;
+            background: linear-gradient(to right, #0078D4, #00BCF2);
+            width: 100%;
+        }
+        .content {
+            padding: 60px;
+            padding-top: 40px;
+            height: calc(100% - 4px - 60px);
+        }
+        .title {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #0078D4;
+            margin-bottom: 1.5rem;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .page-number {
+            font-weight: 600;
+        }
+        .pipeline-container {
+            height: 120px;
+            position: relative;
+            margin: 40px 0;
+        }
+        .pipeline-stage {
+            position: absolute;
+            height: 70px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .pipeline-stage:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .pipeline-arrow {
+            position: absolute;
+            top: 30px;
+            color: #0078D4;
+            font-size: 1.5rem;
+        }
+        .stage-tests {
+            position: absolute;
+            top: 80px;
+            font-size: 0.85rem;
+            text-align: center;
+            color: #555;
+            width: 160px;
+            margin-left: -80px;
+        }
+        .practice-card {
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            padding: 16px;
+            transition: all 0.3s ease;
+            height: 100%;
+            background-color: white;
+        }
+        .practice-card:hover {
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+        }
+        .practice-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(0, 120, 212, 0.1);
+            color: #0078D4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+        .practice-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0078D4;
+            margin-bottom: 8px;
+        }
+        .tool-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 4px 10px;
+            margin: 4px;
+            font-size: 0.85rem;
+            color: #4b5563;
+            transition: all 0.2s ease;
+        }
+        .tool-badge:hover {
+            background-color: #E5F1FB;
+            color: #0078D4;
+            border-color: #0078D4;
+        }
+        .tool-icon {
+            margin-right: 6px;
+            font-size: 0.9rem;
+        }
+        .tip-box {
+            background-color: #E5F1FB;
+            border-left: 4px solid #0078D4;
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            display: flex;
+            align-items: flex-start;
+            margin-top: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-accent"></div>
+        <div class="content">
+            <h1 class="title">CI/CD Integration & Reporting</h1>
+            
+            <div class="pipeline-container">
+                <div class="pipeline-stage bg-blue-600" style="width: 160px; left: 0;">
+                    <i class="fas fa-code mb-1"></i>
+                    <span>Commit/PR</span>
+                    <div class="stage-tests">
+                        <span class="font-medium text-blue-700">Unit Tests</span>
+                        <br>Fast feedback loop
+                    </div>
+                </div>
+                <div class="pipeline-arrow" style="left: 170px">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                
+                <div class="pipeline-stage bg-green-600" style="width: 160px; left: 200px;">
+                    <i class="fas fa-vial mb-1"></i>
+                    <span>Build & Test</span>
+                    <div class="stage-tests">
+                        <span class="font-medium text-green-700">Integration Tests</span>
+                        <br>Component interactions
+                    </div>
+                </div>
+                <div class="pipeline-arrow" style="left: 370px">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                
+                <div class="pipeline-stage bg-yellow-600" style="width: 160px; left: 400px;">
+                    <i class="fas fa-cube mb-1"></i>
+                    <span>Staging</span>
+                    <div class="stage-tests">
+                        <span class="font-medium text-yellow-700">System Tests</span>
+                        <br>End-to-end validation
+                    </div>
+                </div>
+                <div class="pipeline-arrow" style="left: 570px">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                
+                <div class="pipeline-stage bg-purple-600" style="width: 160px; left: 600px;">
+                    <i class="fas fa-check-circle mb-1"></i>
+                    <span>Pre-Production</span>
+                    <div class="stage-tests">
+                        <span class="font-medium text-purple-700">Acceptance Tests</span>
+                        <br>Business requirements
+                    </div>
+                </div>
+                <div class="pipeline-arrow" style="left: 770px">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                
+                <div class="pipeline-stage bg-red-600" style="width: 160px; left: 800px;">
+                    <i class="fas fa-rocket mb-1"></i>
+                    <span>Production</span>
+                    <div class="stage-tests">
+                        <span class="font-medium text-red-700">Monitoring & QA</span>
+                        <br>Real-world validation
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-6 mt-6">
+                <div class="practice-card">
+                    <div class="practice-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="practice-title">Optimize Test Execution</div>
+                    <p class="text-gray-700 text-sm mb-3">Run faster tests earlier in the pipeline to get quick feedback. Prioritize and parallelize tests to reduce overall build time.</p>
+                    <ul class="text-gray-600 text-xs space-y-1 ml-4 list-disc">
+                        <li>Run unit tests before integration tests</li>
+                        <li>Parallelize test execution when possible</li>
+                        <li>Implement test splitting for large test suites</li>
+                    </ul>
+                </div>
+                
+                <div class="practice-card">
+                    <div class="practice-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="practice-title">Fail Fast Principle</div>
+                    <p class="text-gray-700 text-sm mb-3">Configure pipelines to stop as soon as tests fail to prevent wasting resources on builds that will ultimately be rejected.</p>
+                    <ul class="text-gray-600 text-xs space-y-1 ml-4 list-disc">
+                        <li>Set up early termination triggers</li>
+                        <li>Prioritize tests that historically fail often</li>
+                        <li>Include smoke tests before running full test suites</li>
+                    </ul>
+                </div>
+                
+                <div class="practice-card">
+                    <div class="practice-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="practice-title">Comprehensive Reporting</div>
+                    <p class="text-gray-700 text-sm mb-3">Generate detailed test reports with metrics that help identify trends, bottlenecks, and areas for improvement.</p>
+                    <ul class="text-gray-600 text-xs space-y-1 ml-4 list-disc">
+                        <li>Track test coverage trends over time</li>
+                        <li>Monitor test execution times</li>
+                        <li>Identify flaky tests for refactoring</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-4">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">Popular CI/CD Integration Tools</h3>
+                <div class="flex flex-wrap">
+                    <span class="tool-badge">
+                        <i class="fab fa-jenkins tool-icon text-orange-500"></i>
+                        Jenkins
+                    </span>
+                    <span class="tool-badge">
+                        <i class="fab fa-github tool-icon text-purple-500"></i>
+                        GitHub Actions
+                    </span>
+                    <span class="tool-badge">
+                        <i class="fab fa-gitlab tool-icon text-orange-600"></i>
+                        GitLab CI
+                    </span>
+                    <span class="tool-badge">
+                        <i class="fas fa-circle-notch tool-icon text-blue-500"></i>
+                        CircleCI
+                    </span>
+                    <span class="tool-badge">
+                        <i class="fab fa-microsoft tool-icon text-blue-700"></i>
+                        Azure DevOps
+                    </span>
+                    <span class="tool-badge">
+                        <i class="fab fa-travis tool-icon text-red-500"></i>
+                        Travis CI
+                    </span>
+                    <span class="tool-badge">
+                        <i class="fas fa-umbrella tool-icon text-green-600"></i>
+                        SonarQube
+                    </span>
+                    <span class="tool-badge">
+                        <i class="fas fa-chart-bar tool-icon text-yellow-600"></i>
+                        Codecov
+                    </span>
+                </div>
+            </div>
+            
+            <div class="tip-box">
+                <div class="text-blue-600 text-2xl mr-4">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-800">Pro Tip: Quality Gates</h4>
+                    <p class="text-gray-700 text-sm">Implement quality gates at each pipeline stage with clear thresholds for passing to the next stage. For example, require 90% unit test coverage before allowing code to proceed to integration testing.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div>Software Testing Series</div>
+            <div class="page-number">17 / 20</div>
+        </div>
+    </div>
+</body>
+</html>

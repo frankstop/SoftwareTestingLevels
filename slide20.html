@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Testing Levels: A Deep Dive on Unit Testing - References & Q&A</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header-accent {
+            height: 4px;
+            background: linear-gradient(to right, #0078D4, #00BCF2);
+            width: 100%;
+        }
+        .content {
+            padding: 60px;
+            padding-top: 40px;
+            height: calc(100% - 4px - 60px);
+        }
+        .title {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #0078D4;
+            margin-bottom: 1.5rem;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .page-number {
+            font-weight: 600;
+        }
+        .reference-card {
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            padding: 14px;
+            transition: all 0.3s ease;
+            margin-bottom: 12px;
+            background-color: white;
+        }
+        .reference-card:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+        .reference-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0078D4;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .reference-icon {
+            color: #0078D4;
+            margin-right: 10px;
+            width: 24px;
+            text-align: center;
+        }
+        .reference-category {
+            display: inline-block;
+            font-size: 0.8rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 10px;
+            color: white;
+            font-weight: 500;
+            vertical-align: middle;
+        }
+        .unit-bg {
+            background-color: #0078D4;
+        }
+        .integration-bg {
+            background-color: #2E7D32;
+        }
+        .system-bg {
+            background-color: #E65100;
+        }
+        .acceptance-bg {
+            background-color: #7B1FA2;
+        }
+        .qna-section {
+            background-color: #E5F1FB;
+            border-radius: 10px;
+            padding: 20px 30px;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .qna-bubble {
+            position: absolute;
+            opacity: 0.2;
+            color: #0078D4;
+            z-index: 0;
+        }
+        .bubble-1 {
+            top: 10px;
+            right: 20px;
+            font-size: 4rem;
+            transform: rotate(10deg);
+        }
+        .bubble-2 {
+            bottom: 20px;
+            left: 30px;
+            font-size: 3rem;
+            transform: rotate(-15deg);
+        }
+        .contact-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            gap: 15px;
+        }
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f2f2f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .social-link:hover {
+            transform: translateY(-3px);
+            background-color: #0078D4;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-accent"></div>
+        <div class="content">
+            <h1 class="title">References & Q&A</h1>
+            
+            <div class="grid grid-cols-2 gap-6">
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                        <i class="fas fa-book text-blue-600 mr-2"></i> Key Resources
+                    </h2>
+                    
+                    <div class="reference-card">
+                        <div class="reference-title">
+                            <i class="fas fa-cube reference-icon"></i>
+                            The Art of Unit Testing by Roy Osherove
+                            <span class="reference-category unit-bg">Unit Testing</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Comprehensive guide to unit testing principles and practices with examples of writing maintainable tests.</p>
+                    </div>
+                    
+                    <div class="reference-card">
+                        <div class="reference-title">
+                            <i class="fab fa-python reference-icon"></i>
+                            pytest Documentation
+                            <span class="reference-category unit-bg">Unit Testing</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Official documentation for pytest including fixtures, parametrization, and plugins.</p>
+                        <p class="text-blue-600 text-sm mt-1">https://docs.pytest.org/</p>
+                    </div>
+                    
+                    <div class="reference-card">
+                        <div class="reference-title">
+                            <i class="fas fa-link reference-icon"></i>
+                            Integration Testing by Martin Fowler
+                            <span class="reference-category integration-bg">Integration Testing</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Explains the concept of narrow vs. broad integration testing approaches.</p>
+                        <p class="text-blue-600 text-sm mt-1">https://martinfowler.com/bliki/IntegrationTest.html</p>
+                    </div>
+                    
+                    <div class="reference-card">
+                        <div class="reference-title">
+                            <i class="fas fa-clipboard-check reference-icon"></i>
+                            Specification by Example by Gojko Adzic
+                            <span class="reference-category acceptance-bg">Acceptance Testing</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Guide to creating better acceptance criteria and executable specifications using BDD techniques.</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                        <i class="fas fa-tools text-blue-600 mr-2"></i> Recommended Tools
+                    </h2>
+                    
+                    <div class="grid grid-cols-2 gap-3 mb-4">
+                        <div class="bg-gray-50 p-3 rounded-lg border border-gray-200 flex items-center">
+                            <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center mr-3">
+                                <i class="fab fa-python text-blue-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-800">pytest</p>
+                                <p class="text-xs text-gray-500">Python testing framework</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-3 rounded-lg border border-gray-200 flex items-center">
+                            <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-route text-green-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-800">Postman</p>
+                                <p class="text-xs text-gray-500">API testing platform</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-3 rounded-lg border border-gray-200 flex items-center">
+                            <div class="w-10 h-10 rounded-lg bg-orange-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-browser text-orange-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-800">Selenium</p>
+                                <p class="text-xs text-gray-500">UI automation testing</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-3 rounded-lg border border-gray-200 flex items-center">
+                            <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-language text-purple-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-800">Cucumber</p>
+                                <p class="text-xs text-gray-500">BDD testing framework</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="qna-section">
+                        <div class="qna-bubble bubble-1">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <div class="qna-bubble bubble-2">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        
+                        <h2 class="text-xl font-semibold text-blue-700 mb-3 relative z-10">Questions & Answers</h2>
+                        <p class="text-gray-700 mb-4 relative z-10">Time to address your questions about software testing levels, implementation strategies, and best practices!</p>
+                        
+                        <div class="flex justify-center">
+                            <div class="flex items-center bg-white px-5 py-3 rounded-lg shadow-md">
+                                <i class="fas fa-lightbulb text-yellow-500 text-xl mr-3"></i>
+                                <p class="text-gray-800">Have a question about implementing these testing approaches? Let's discuss!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-section">
+                        <p class="text-gray-600">Connect with us for more resources and discussions:</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-5 text-center">
+                <p class="text-gray-800 font-medium">Thank you for attending!</p>
+                <p class="text-gray-600 text-sm">For additional resources and the slide deck, visit: <span class="text-blue-600">example.com/testing-resources</span></p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div>Software Testing Series</div>
+            <div class="page-number">20 / 20</div>
+        </div>
+    </div>
+</body>
+</html>

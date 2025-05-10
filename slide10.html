@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Testing Levels: A Deep Dive on Unit Testing - Integration Testing Examples</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header-accent {
+            height: 4px;
+            background: linear-gradient(to right, #0078D4, #00BCF2);
+            width: 100%;
+        }
+        .content {
+            padding: 60px;
+            padding-top: 40px;
+            height: calc(100% - 4px - 60px);
+        }
+        .title {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #0078D4;
+            margin-bottom: 1.5rem;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .page-number {
+            font-weight: 600;
+        }
+        .code-container {
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            border: 1px solid #e2e8f0;
+        }
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .code-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+        }
+        .code-tag {
+            background-color: #0078D4;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        .code-block {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            overflow-x: auto;
+            white-space: pre;
+            color: #333;
+        }
+        .info-card {
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            padding: 16px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+            background-color: white;
+            height: 100%;
+        }
+        .info-card:hover {
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+        }
+        .info-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .info-icon {
+            color: #0078D4;
+            font-size: 1.5rem;
+            margin-right: 12px;
+        }
+        .info-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0078D4;
+        }
+        .tool-logo {
+            height: 30px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-accent"></div>
+        <div class="content">
+            <h1 class="title">Integration Testing in Practice</h1>
+            
+            <div class="grid grid-cols-2 gap-6 mb-6">
+                <div class="info-card bg-blue-50">
+                    <div class="info-header">
+                        <div class="info-icon"><i class="fas fa-tools"></i></div>
+                        <div class="info-title">Popular Integration Testing Tools</div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <div class="flex items-center bg-white px-3 py-1 rounded-lg border border-gray-200">
+                            <i class="fab fa-node-js text-green-600 mr-2"></i>
+                            <span class="text-gray-800 font-medium">Supertest</span>
+                        </div>
+                        <div class="flex items-center bg-white px-3 py-1 rounded-lg border border-gray-200">
+                            <i class="fas fa-route text-orange-500 mr-2"></i>
+                            <span class="text-gray-800 font-medium">Postman</span>
+                        </div>
+                        <div class="flex items-center bg-white px-3 py-1 rounded-lg border border-gray-200">
+                            <i class="fab fa-java text-red-600 mr-2"></i>
+                            <span class="text-gray-800 font-medium">RestAssured</span>
+                        </div>
+                        <div class="flex items-center bg-white px-3 py-1 rounded-lg border border-gray-200">
+                            <i class="fas fa-flask text-blue-600 mr-2"></i>
+                            <span class="text-gray-800 font-medium">TestContainers</span>
+                        </div>
+                        <div class="flex items-center bg-white px-3 py-1 rounded-lg border border-gray-200">
+                            <i class="fas fa-spider text-purple-600 mr-2"></i>
+                            <span class="text-gray-800 font-medium">Pact</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 text-sm">Integration testing tools focus on testing the boundaries between components, often using mocks, fakes, or real instances depending on the testing strategy.</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-header">
+                        <div class="info-icon"><i class="fas fa-file-contract"></i></div>
+                        <div class="info-title">Contract Testing</div>
+                    </div>
+                    <p class="text-gray-700 mb-3">A modern approach to integration testing, ensuring components fulfill their API contracts.</p>
+                    <div class="bg-gray-50 p-3 rounded text-sm">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span class="text-gray-800 font-medium">Consumer-Driven Contracts</span>
+                        </div>
+                        <p class="text-gray-600 ml-6 mb-2">Consumers define expectations that providers must fulfill</p>
+                        
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span class="text-gray-800 font-medium">Provider Contracts</span>
+                        </div>
+                        <p class="text-gray-600 ml-6">Providers define their service capabilities and guarantees</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-title">API Integration Test Example (JavaScript)</div>
+                    <div class="code-tag">Using Supertest with Express</div>
+                </div>
+                <div class="code-block bg-gray-100 p-3 rounded">
+const request = require('supertest');
+const app = require('../app');
+const db = require('../db');
+
+describe('User API Integration Tests', () => {
+  // Setup: Connect to test database
+  beforeAll(async () => {
+    await db.connect('mongodb://localhost:27017/test_db');
+  });
+  
+  // Clean up after tests
+  afterAll(async () => {
+    await db.disconnect();
+  });
+  
+  // Reset database between tests
+  afterEach(async () => {
+    await db.clearCollections();
+  });
+
+  test('GET /api/users should return all users', async () => {
+    // Arrange: Create test data
+    await db.users.insertMany([
+      { name: 'Alice', email: 'alice@example.com' },
+      { name: 'Bob', email: 'bob@example.com' }
+    ]);
+    
+    // Act: Make API request
+    const response = await request(app)
+      .get('/api/users')
+      .expect('Content-Type', /json/)
+      .expect(200);
+    
+    // Assert: Check response body
+    expect(response.body.length).toBe(2);
+    expect(response.body[0].name).toBe('Alice');
+    expect(response.body[1].name).toBe('Bob');
+  });
+
+  test('POST /api/users should create a new user', async () => {
+    // Act: Make API request to create user
+    const response = await request(app)
+      .post('/api/users')
+      .send({ name: 'Charlie', email: 'charlie@example.com' })
+      .expect('Content-Type', /json/)
+      .expect(201);
+    
+    // Assert: Verify response and database state
+    expect(response.body.name).toBe('Charlie');
+    
+    // Verify user was actually saved to database
+    const savedUser = await db.users.findOne({ email: 'charlie@example.com' });
+    expect(savedUser).toBeTruthy();
+    expect(savedUser.name).toBe('Charlie');
+  });
+});
+</div>
+            </div>
+            
+            <div class="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                <div class="flex">
+                    <div class="flex-shrink-0 mr-3">
+                        <i class="fas fa-lightbulb text-yellow-500 text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800 mb-1">Best Practice: Use Test Containers</h3>
+                        <p class="text-gray-700 text-sm">For database integration tests, consider using Testcontainers to spin up isolated, real database instances in Docker containers during testing, providing the most realistic environment without affecting production data.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div>Software Testing Series</div>
+            <div class="page-number">10 / 20</div>
+        </div>
+    </div>
+</body>
+</html>

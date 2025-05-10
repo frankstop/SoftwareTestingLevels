@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Testing Levels: A Deep Dive on Unit Testing - Unit Testing Best Practices</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header-accent {
+            height: 4px;
+            background: linear-gradient(to right, #0078D4, #00BCF2);
+            width: 100%;
+        }
+        .content {
+            padding: 60px;
+            padding-top: 40px;
+            height: calc(100% - 4px - 60px);
+        }
+        .title {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #0078D4;
+            margin-bottom: 1.5rem;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .page-number {
+            font-weight: 600;
+        }
+        .practice-card {
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .practice-card:hover {
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+        }
+        .practice-header {
+            padding: 12px 16px;
+            background-color: #E5F1FB;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .practice-icon {
+            color: #0078D4;
+            font-size: 1.5rem;
+            margin-right: 12px;
+        }
+        .practice-body {
+            padding: 16px;
+            flex-grow: 1;
+        }
+        .pattern-box {
+            background-color: #f8f8f8;
+            border: 1px dashed #cbd5e0;
+            border-radius: 6px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .pattern-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .step-number {
+            background-color: #0078D4;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            margin-right: 15px;
+        }
+        .pattern-arrow {
+            color: #0078D4;
+            font-size: 1.5rem;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header-accent"></div>
+        <div class="content">
+            <h1 class="title">Unit Testing Best Practices</h1>
+            
+            <div class="grid grid-cols-2 gap-6 mb-6">
+                <div class="practice-card">
+                    <div class="practice-header">
+                        <div class="practice-icon"><i class="fas fa-bullseye"></i></div>
+                        <h3 class="text-xl font-semibold text-gray-800">Test One Thing Per Test</h3>
+                    </div>
+                    <div class="practice-body text-gray-700">
+                        <p>Each test should verify a single behavior or concept. This makes tests more maintainable, easier to understand, and provides clearer failure messages.</p>
+                        <div class="mt-3 p-2 bg-green-50 border-l-4 border-green-300 text-green-800 text-sm">
+                            <strong>Good:</strong> <code>test_add_user_with_valid_email()</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="practice-card">
+                    <div class="practice-header">
+                        <div class="practice-icon"><i class="fas fa-file-signature"></i></div>
+                        <h3 class="text-xl font-semibold text-gray-800">Use Descriptive Test Names</h3>
+                    </div>
+                    <div class="practice-body text-gray-700">
+                        <p>Name tests to clearly express what functionality they're verifying and what conditions they're testing under.</p>
+                        <div class="mt-3 bg-red-50 border-l-4 border-red-300 text-red-800 p-2 text-sm">
+                            <strong>Avoid:</strong> <code>test_user()</code>
+                        </div>
+                        <div class="mt-2 bg-green-50 border-l-4 border-green-300 text-green-800 p-2 text-sm">
+                            <strong>Better:</strong> <code>test_user_registration_fails_with_existing_email()</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="practice-card">
+                    <div class="practice-header">
+                        <div class="practice-icon"><i class="fas fa-ghost"></i></div>
+                        <h3 class="text-xl font-semibold text-gray-800">Use Mocks Sparingly</h3>
+                    </div>
+                    <div class="practice-body text-gray-700">
+                        <p>Mock external dependencies only, not internal implementation details. Overuse of mocks leads to brittle tests that break when implementation changes.</p>
+                        <div class="mt-3 p-2 bg-blue-50 border-l-4 border-blue-300 text-blue-800 text-sm">
+                            <strong>When to mock:</strong> APIs, databases, file systems, external services
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="practice-card">
+                    <div class="practice-header">
+                        <div class="practice-icon"><i class="fas fa-bolt"></i></div>
+                        <h3 class="text-xl font-semibold text-gray-800">Keep Tests Fast</h3>
+                    </div>
+                    <div class="practice-body text-gray-700">
+                        <p>Unit tests should execute quickly (< 50ms each). Slow tests discourage frequent test runs and slow down the development feedback loop.</p>
+                        <div class="mt-3 p-2 bg-purple-50 border-l-4 border-purple-300 text-purple-800 text-sm">
+                            <strong>Tip:</strong> Profile slow tests to identify bottlenecks and consider moving them to a separate test suite if they can't be optimized.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pattern-box">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">The Arrange-Act-Assert Pattern</h3>
+                <div class="flex items-center">
+                    <div class="pattern-step">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h4 class="font-medium text-gray-800">Arrange</h4>
+                            <p class="text-gray-600 text-sm">Set up test preconditions</p>
+                        </div>
+                    </div>
+                    <div class="pattern-arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="pattern-step">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h4 class="font-medium text-gray-800">Act</h4>
+                            <p class="text-gray-600 text-sm">Execute system under test</p>
+                        </div>
+                    </div>
+                    <div class="pattern-arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="pattern-step">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h4 class="font-medium text-gray-800">Assert</h4>
+                            <p class="text-gray-600 text-sm">Verify expected outcomes</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 bg-gray-100 p-3 rounded text-sm font-mono">
+                    <div class="text-gray-500"># Example following AAA pattern</div>
+                    <div><span class="text-purple-600">def</span> <span class="text-blue-600">test_calculate_total</span>():</div>
+                    <div class="ml-4"><span class="text-gray-500"># Arrange</span></div>
+                    <div class="ml-4">cart = ShoppingCart()</div>
+                    <div class="ml-4">cart.add_item(Item("book", 10.0))</div>
+                    <div class="ml-4">cart.add_item(Item("pen", 5.0))</div>
+                    <div class="ml-4"><span class="text-gray-500"># Act</span></div>
+                    <div class="ml-4">total = cart.calculate_total()</div>
+                    <div class="ml-4"><span class="text-gray-500"># Assert</span></div>
+                    <div class="ml-4">assert total == 15.0</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div>Software Testing Series</div>
+            <div class="page-number">6 / 20</div>
+        </div>
+    </div>
+</body>
+</html>
